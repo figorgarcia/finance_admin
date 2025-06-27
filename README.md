@@ -3,7 +3,7 @@
 A simple personal finance management app built with React Native.
 
 ## Demonstration
-https://igorsurfsc.wistia.com/medias/pjaalhqt5n(https://igorsurfsc.wistia.com/medias/pjaalhqt5n)
+https://igorsurfsc.wistia.com/medias/pjaalhqt5n
 
 ## Features
 
