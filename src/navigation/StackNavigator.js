@@ -32,7 +32,12 @@ export default function StackNavigator() {
                         headerLeft: () => null
                     })}
                 />
-                <Stack.Screen name="Detail" component={Detail} />
+                <Stack.Screen name="TransactionDetails" component={Detail} options={({ route }) => (
+                    {
+                        title: route.params?.transaction?.id
+                            ? `Transaction #${route.params.transaction.id}` : 'Transaction Details',
+                    }
+                )} />
                 <Stack.Screen name="AddTransaction" component={AddTransaction} options={{ title: 'Adicionar Transação' }} />
 
             </Stack.Navigator>

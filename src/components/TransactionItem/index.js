@@ -2,11 +2,11 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import styles from './styles'
 
-export default function TransactionItem({ item }) {
+export default function TransactionItem({ item, onPress }) {
     return (
         <TouchableOpacity
             style={styles.transaction}
-            onPress={() => navigation.navigate('Detail', { transaction: item })}
+            onPress={onPress}
         >
             <View style={{ flex: 3 }}>
                 <Text style={styles.transactionDescription}>{item.description}</Text>
@@ -16,7 +16,7 @@ export default function TransactionItem({ item }) {
             </View>
             <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'center' }}>
                 <Text style={[item.transactionType === 'Debit' ? styles.transactionDebit : styles.transactionCredit, styles.transactionAmount]}>
-                    {item.transactionType === 'Debit' ? '-' : '+'}${item.amount.toFixed(2)}
+                    {item.transactionType === 'Debit' ? '-' : '+'}{item.amount.toLocaleString('en-CA', {style: 'currency', currency: 'CAD'})}
                 </Text>
                 <Text style={styles.transactionType}>{item.transactionType}</Text>
             </View>

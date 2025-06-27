@@ -3,12 +3,15 @@ import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native';
 
 import StackNavigator from './src/navigation/StackNavigator'
+import { TransactionProvider } from './src/context/TransactionProvider';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="auto" />
-      <StackNavigator />
+      <TransactionProvider>
+        <StatusBar style="auto" />
+        <StackNavigator />
+      </TransactionProvider>
     </SafeAreaView>
   );
 }

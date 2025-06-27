@@ -8,15 +8,14 @@ import styles from './styles';
 import { FlatList } from 'react-native-gesture-handler';
 import AddTransaction from '../AddTransaction';
 import EmptyComponent from '../../components/EmptyComponent';
+import { useTransactions } from '../../context/TransactionProvider';
 
 export default function Home({ navigation }) {
 
-    const [addTransactionVisible, setAddTransactionVisible] = useState(false);
-    const [transactions, setTransactions] = useState([]);
+    const { transactions, addTransactionVisible, setAddTransactionVisible } = useTransactions();
 
-    const addTransaction = (newTransaction) => {
-        setTransactions([...transactions, newTransaction]);
-        setAddTransactionVisible(false);
+    const onPressDetailTransaction = (transaction) => {
+        navigation.navigate('TransactionDetails', { transaction });
     }
 
     return (
@@ -39,11 +38,11 @@ export default function Home({ navigation }) {
                 renderItem={({ item }) => (
                     <TransactionItem
                         item={item}
-                        onPress={() => navigation.navigate('TransactionDetails', { transaction: item })}
+                        onPress={() => onPressDetailTransaction(item)}
                     />
                 )}
             />
-            <AddTransaction isVisible={addTransactionVisible} setModalVisible={setAddTransactionVisible} onAdd={addTransaction} onCancel={setAddTransactionVisible} />
+            <AddTransaction isVisible={addTransactionVisible} />
         </View>
     )
 }
